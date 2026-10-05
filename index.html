@@ -382,6 +382,56 @@ section{
   cursor:pointer;
 }
 
+/* OBJECT DETAILS */
+
+.object-details{
+  display:none;
+  margin-top:25px;
+  padding:30px;
+  background:linear-gradient(135deg,rgba(20,35,65,.9),rgba(8,12,23,.95));
+  border:1px solid rgba(101,184,255,.25);
+  border-radius:20px;
+}
+
+.object-details.show{
+  display:block;
+}
+
+.object-details h3{
+  color:var(--gold);
+  font-size:28px;
+  margin-bottom:12px;
+}
+
+.object-details p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.details-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.detail-box{
+  background:rgba(255,255,255,.04);
+  padding:15px;
+  border-radius:10px;
+}
+
+.detail-box strong{
+  display:block;
+  color:white;
+  margin-bottom:5px;
+}
+
+.detail-box span{
+  color:var(--muted);
+  font-size:13px;
+}
+
 /* MAP */
 
 .map{
@@ -411,17 +461,18 @@ section{
 
 .star{
   position:absolute;
-  width:8px;
-  height:8px;
+  width:10px;
+  height:10px;
   background:white;
   border-radius:50%;
   box-shadow:0 0 12px white;
   cursor:pointer;
   transition:.2s;
+  z-index:5;
 }
 
 .star:hover{
-  transform:scale(2);
+  transform:scale(1.8);
   background:var(--gold);
 }
 
@@ -440,6 +491,47 @@ section{
   bottom:20px;
   color:var(--muted);
   font-size:13px;
+}
+
+.star-info{
+  display:none;
+  position:absolute;
+  width:min(330px,80%);
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(7,11,21,.97);
+  border:1px solid rgba(255,210,26,.45);
+  border-radius:18px;
+  padding:25px;
+  z-index:20;
+  box-shadow:0 15px 60px rgba(0,0,0,.55);
+}
+
+.star-info.show{
+  display:block;
+}
+
+.star-info h3{
+  color:var(--gold);
+  font-size:25px;
+  margin-bottom:10px;
+}
+
+.star-info p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
+
+.star-info button{
+  margin-top:18px;
+  background:var(--gold);
+  border:none;
+  border-radius:8px;
+  padding:10px 15px;
+  cursor:pointer;
+  font-weight:700;
 }
 
 /* FOOTER */
@@ -484,6 +576,10 @@ footer strong{
     grid-template-columns:1fr;
   }
 
+  .details-grid{
+    grid-template-columns:1fr;
+  }
+
   h1{
     letter-spacing:-2px;
   }
@@ -511,10 +607,7 @@ footer strong{
   </div>
 </header>
 
-
 <main>
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -552,9 +645,6 @@ footer strong{
 
 </section>
 
-
-<!-- DAILY FACT -->
-
 <section id="facts">
 
   <div class="section-title">
@@ -583,15 +673,12 @@ footer strong{
 
 </section>
 
-
-<!-- EXPLORE -->
-
 <section id="explore">
 
   <div class="section-title">
     <small>Explore</small>
     <h2>Discover Celestial Objects</h2>
-    <p>Search the cosmos and discover some of its most fascinating objects.</p>
+    <p>Search the cosmos and explore information about fascinating objects.</p>
   </div>
 
   <input
@@ -607,75 +694,81 @@ footer strong{
     <article class="card" data-name="sun star">
       <div class="card-icon">☀️</div>
       <h3>The Sun</h3>
-      <p>
-        The star at the centre of our Solar System. Its energy makes
-        life on Earth possible.
-      </p>
-      <button onclick="favourite('The Sun')">♡ Favourite</button>
+      <p>The star at the centre of our Solar System.</p>
+      <button onclick="showObject('sun')">Explore →</button>
     </article>
 
     <article class="card" data-name="earth planet">
       <div class="card-icon">🌍</div>
       <h3>Earth</h3>
-      <p>
-        Our home planet and the only world currently known to support life.
-      </p>
-      <button onclick="favourite('Earth')">♡ Favourite</button>
+      <p>Our home planet and the only world currently known to support life.</p>
+      <button onclick="showObject('earth')">Explore →</button>
     </article>
 
     <article class="card" data-name="mars planet">
       <div class="card-icon">🔴</div>
       <h3>Mars</h3>
-      <p>
-        The Red Planet has enormous volcanoes, deep valleys and evidence
-        of ancient water.
-      </p>
-      <button onclick="favourite('Mars')">♡ Favourite</button>
+      <p>The Red Planet, home to enormous volcanoes and deep valleys.</p>
+      <button onclick="showObject('mars')">Explore →</button>
     </article>
 
     <article class="card" data-name="jupiter planet">
       <div class="card-icon">🪐</div>
       <h3>Jupiter</h3>
-      <p>
-        The largest planet in our Solar System, famous for its Great Red Spot.
-      </p>
-      <button onclick="favourite('Jupiter')">♡ Favourite</button>
+      <p>The largest planet in our Solar System.</p>
+      <button onclick="showObject('jupiter')">Explore →</button>
     </article>
 
     <article class="card" data-name="saturn planet">
-      <div class="card-icon">🪐</div>
+      <div class="card-icon">💍</div>
       <h3>Saturn</h3>
-      <p>
-        A gas giant surrounded by a spectacular system of icy rings.
-      </p>
-      <button onclick="favourite('Saturn')">♡ Favourite</button>
+      <p>A gas giant famous for its spectacular rings.</p>
+      <button onclick="showObject('saturn')">Explore →</button>
     </article>
 
     <article class="card" data-name="black hole">
       <div class="card-icon">🕳️</div>
       <h3>Black Hole</h3>
-      <p>
-        A region of spacetime where gravity is so strong that even light
-        cannot escape.
-      </p>
-      <button onclick="favourite('Black Hole')">♡ Favourite</button>
+      <p>A region where gravity is so strong that even light cannot escape.</p>
+      <button onclick="showObject('blackhole')">Explore →</button>
     </article>
 
   </div>
 
+  <div id="objectDetails" class="object-details">
+
+    <h3 id="objectTitle"></h3>
+    <p id="objectDescription"></p>
+
+    <div class="details-grid">
+
+      <div class="detail-box">
+        <strong>Type</strong>
+        <span id="objectType"></span>
+      </div>
+
+      <div class="detail-box">
+        <strong>Location</strong>
+        <span id="objectLocation"></span>
+      </div>
+
+      <div class="detail-box">
+        <strong>Interesting fact</strong>
+        <span id="objectFact"></span>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
-
-
-<!-- COSMIC MAP -->
 
 <section id="map">
 
   <div class="section-title">
     <small>Navigate space</small>
     <h2>Cosmic Map</h2>
-    <p>
-      Explore our interactive-style cosmic map. Click a star to discover it.
-    </p>
+    <p>Click a star to reveal information about it.</p>
   </div>
 
   <div class="map">
@@ -691,6 +784,16 @@ footer strong{
     <div class="star s7" onclick="starInfo('Aldebaran')"></div>
     <div class="star s8" onclick="starInfo('Antares')"></div>
 
+    <div id="starInfo" class="star-info">
+
+      <h3 id="starName"></h3>
+
+      <p id="starDescription"></p>
+
+      <button onclick="closeStarInfo()">Close</button>
+
+    </div>
+
     <div class="map-label">
       ✦ Click a star to explore
     </div>
@@ -698,9 +801,6 @@ footer strong{
   </div>
 
 </section>
-
-
-<!-- PLANETS -->
 
 <section id="planets">
 
@@ -754,31 +854,30 @@ footer strong{
 
 </main>
 
-
 <footer>
   <p>
     <strong>Presh The Cosmos Alien</strong> · Explore. Discover. Wonder.
   </p>
+
   <p style="margin-top:8px;font-size:12px;">
     Built for curious minds looking beyond Earth 🌌
   </p>
 </footer>
-
 
 <script>
 
 const facts = [
   [
     "A day on Venus is longer than its year.",
-    "Venus takes about 243 Earth days to rotate once, but only about 225 Earth days to orbit the Sun."
+    "Venus takes about 243 Earth days to rotate once, but about 225 Earth days to orbit the Sun."
   ],
   [
     "Neutron stars are incredibly dense.",
-    "A tiny amount of neutron-star material would have an enormous mass because of its extreme density."
+    "Neutron stars pack enormous amounts of mass into objects only around the size of a city."
   ],
   [
     "Jupiter is enormous.",
-    "More than 1,300 Earths could fit inside Jupiter by volume."
+    "Jupiter is the largest planet in our Solar System."
   ],
   [
     "Space is not completely silent.",
@@ -786,23 +885,114 @@ const facts = [
   ],
   [
     "Mars has the largest volcano in the Solar System.",
-    "Olympus Mons rises roughly 22 kilometres above the surrounding Martian plains."
+    "Olympus Mons is the largest known volcano in the Solar System."
   ],
   [
     "The universe is expanding.",
-    "On the largest scales, galaxies are generally moving farther apart as space itself expands."
+    "On the largest scales, galaxies are generally moving farther apart as space expands."
   ]
 ];
 
+const objects = {
+
+  sun:{
+    title:"☀️ The Sun",
+    description:"The Sun is the star at the centre of our Solar System and provides most of the energy that drives Earth's climate and supports life.",
+    type:"Star",
+    location:"Centre of our Solar System",
+    fact:"It contains the vast majority of the mass in our Solar System."
+  },
+
+  earth:{
+    title:"🌍 Earth",
+    description:"Earth is a rocky planet with liquid surface water and the only world currently known to support life.",
+    type:"Rocky planet",
+    location:"Third planet from the Sun",
+    fact:"About 71% of Earth's surface is covered by water."
+  },
+
+  mars:{
+    title:"🔴 Mars",
+    description:"Mars is a cold rocky world commonly called the Red Planet because iron minerals in its soil give the surface its reddish appearance.",
+    type:"Rocky planet",
+    location:"Fourth planet from the Sun",
+    fact:"Mars has two small moons: Phobos and Deimos."
+  },
+
+  jupiter:{
+    title:"🪐 Jupiter",
+    description:"Jupiter is a massive gas giant with powerful storms and a complex system of moons.",
+    type:"Gas giant",
+    location:"Fifth planet from the Sun",
+    fact:"Jupiter has a famous storm called the Great Red Spot."
+  },
+
+  saturn:{
+    title:"💍 Saturn",
+    description:"Saturn is a gas giant best known for its spectacular rings made mostly of ice and rocky particles.",
+    type:"Gas giant",
+    location:"Sixth planet from the Sun",
+    fact:"Saturn is less dense than water."
+  },
+
+  blackhole:{
+    title:"🕳️ Black Hole",
+    description:"A black hole is an extremely compact object whose gravity is so strong that beyond its event horizon, light cannot escape.",
+    type:"Extreme gravitational object",
+    location:"Found throughout the universe",
+    fact:"Black holes can form when massive stars collapse."
+  }
+
+};
+
+const stars = {
+
+  Sirius:{
+    description:"Sirius is the brightest star in Earth's night sky.",
+  },
+
+  Betelgeuse:{
+    description:"Betelgeuse is a red supergiant star in the constellation Orion.",
+  },
+
+  Vega:{
+    description:"Vega is one of the brightest stars visible from Earth and is part of the constellation Lyra.",
+  },
+
+  Polaris:{
+    description:"Polaris is commonly known as the North Star because it appears close to the north celestial pole.",
+  },
+
+  Rigel:{
+    description:"Rigel is a very bright blue supergiant star in the constellation Orion.",
+  },
+
+  "Proxima Centauri":{
+    description:"Proxima Centauri is the closest known star to the Sun.",
+  },
+
+  Aldebaran:{
+    description:"Aldebaran is a giant orange star in the constellation Taurus.",
+  },
+
+  Antares:{
+    description:"Antares is a red supergiant and one of the brightest stars in the constellation Scorpius.",
+  }
+
+};
+
 function newFact(){
 
-  const item = facts[Math.floor(Math.random()*facts.length)];
+  const item =
+    facts[Math.floor(Math.random()*facts.length)];
 
-  document.getElementById("factTitle").textContent = item[0];
-  document.getElementById("factText").textContent = item[1];
+  document.getElementById("factTitle").textContent =
+    item[0];
+
+  document.getElementById("factText").textContent =
+    item[1];
 
 }
-
 
 function searchObjects(){
 
@@ -824,41 +1014,63 @@ function searchObjects(){
 
 }
 
+function showObject(key){
 
-function favourite(name){
+  const item = objects[key];
 
-  let favourites =
-    JSON.parse(localStorage.getItem("preshFavourites") || "[]");
+  document.getElementById("objectTitle").textContent =
+    item.title;
 
-  if(!favourites.includes(name)){
-    favourites.push(name);
-    localStorage.setItem(
-      "preshFavourites",
-      JSON.stringify(favourites)
-    );
+  document.getElementById("objectDescription").textContent =
+    item.description;
 
-    alert(name + " added to your favourites ⭐");
-  }else{
-    alert(name + " is already in your favourites ⭐");
-  }
+  document.getElementById("objectType").textContent =
+    item.type;
+
+  document.getElementById("objectLocation").textContent =
+    item.location;
+
+  document.getElementById("objectFact").textContent =
+    item.fact;
+
+  const details =
+    document.getElementById("objectDetails");
+
+  details.classList.add("show");
+
+  details.scrollIntoView({
+    behavior:"smooth",
+    block:"nearest"
+  });
 
 }
-
 
 function starInfo(name){
 
-  alert(
-    name +
-    "\\n\\nThis celestial object has been selected on the Presh The Cosmos Alien map. 🚀"
-  );
+  const star = stars[name];
+
+  document.getElementById("starName").textContent =
+    "⭐ " + name;
+
+  document.getElementById("starDescription").textContent =
+    star.description;
+
+  document.getElementById("starInfo")
+    .classList.add("show");
 
 }
 
+function closeStarInfo(){
+
+  document.getElementById("starInfo")
+    .classList.remove("show");
+
+}
 
 function loginMessage(){
 
   alert(
-    "User accounts are coming soon. 🚀\\n\\n" +
+    "User accounts are coming soon. 🚀\n\n" +
     "This will eventually allow you to create a profile, save favourites and personalise your cosmic journey."
   );
 
