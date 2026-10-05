@@ -394,7 +394,7 @@ section{
   color:var(--gold);
 }
 
-/* CARDS */
+/* EXPLORE CARDS */
 
 .cards{
   display:grid;
@@ -407,6 +407,17 @@ section{
   border-radius:15px;
   background:#0b101a;
   border:1px solid var(--line);
+  color:var(--text);
+  text-align:left;
+  width:100%;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.card:hover{
+  border-color:var(--gold);
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
 .card h3{
@@ -419,6 +430,25 @@ section{
   line-height:1.6;
 }
 
+.topic-info{
+  margin-top:18px;
+  display:none;
+}
+
+.topic-info.show{
+  display:block;
+}
+
+.topic-info h3{
+  color:var(--gold);
+  margin-top:0;
+}
+
+.topic-info p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
 footer{
   margin-top:40px;
   padding:30px 0;
@@ -428,6 +458,7 @@ footer{
 }
 
 @media(max-width:750px){
+
   header{
     align-items:flex-start;
     flex-direction:column;
@@ -478,7 +509,10 @@ footer{
 <body>
 
 <header>
-  <div class="logo">Presh <span>The Cosmos Alien</span> 👽</div>
+
+  <div class="logo">
+    Presh <span>The Cosmos Alien</span> 👽
+  </div>
 
   <nav>
     <button onclick="goTo('map')">Space Map</button>
@@ -486,15 +520,22 @@ footer{
     <button onclick="goTo('facts')">Space Facts</button>
     <button onclick="goTo('explore')">Explore</button>
   </nav>
+
 </header>
 
 <main>
 
 <section class="hero">
-  <div class="container">
-    <div class="badge">WELCOME TO THE COSMOS 🚀</div>
 
-    <h1>Explore Beyond Earth.</h1>
+  <div class="container">
+
+    <div class="badge">
+      WELCOME TO THE COSMOS 🚀
+    </div>
+
+    <h1>
+      Explore Beyond Earth.
+    </h1>
 
     <p>
       Discover planets, stars and fascinating facts about the universe
@@ -502,29 +543,42 @@ footer{
     </p>
 
     <div class="hero-actions">
+
       <button class="primary" onclick="goTo('map')">
         Explore Space Map
       </button>
 
-      <button class="secondary" onclick="newFact()">
+      <button class="secondary" onclick="newFact(); goTo('facts')">
         Give Me A Space Fact
       </button>
+
     </div>
+
   </div>
+
 </section>
 
 
 <section id="map">
+
   <div class="container">
 
     <div class="section-title">
-      <h2>🌌 Interactive Space Map</h2>
-      <p>Tap a celestial object to learn more about it.</p>
+
+      <h2>
+        🌌 Interactive Space Map
+      </h2>
+
+      <p>
+        Tap a celestial object to learn more about it.
+      </p>
+
     </div>
 
     <div class="panel">
 
       <div class="space">
+
         <div class="stars"></div>
 
         <div class="orbit one"></div>
@@ -534,56 +588,83 @@ footer{
 
         <div class="sun"></div>
 
-        <button class="object mercury"
+        <button
+          class="object mercury"
           onclick="showObject('Mercury')"
-          title="Mercury"></button>
+          title="Mercury">
+        </button>
 
-        <button class="object venus"
+        <button
+          class="object venus"
           onclick="showObject('Venus')"
-          title="Venus"></button>
+          title="Venus">
+        </button>
 
-        <button class="object earth"
+        <button
+          class="object earth"
           onclick="showObject('Earth')"
-          title="Earth"></button>
+          title="Earth">
+        </button>
 
-        <button class="object mars"
+        <button
+          class="object mars"
           onclick="showObject('Mars')"
-          title="Mars"></button>
+          title="Mars">
+        </button>
 
-        <button class="object jupiter"
+        <button
+          class="object jupiter"
           onclick="showObject('Jupiter')"
-          title="Jupiter"></button>
+          title="Jupiter">
+        </button>
 
-        <button class="object saturn"
+        <button
+          class="object saturn"
           onclick="showObject('Saturn')"
-          title="Saturn"></button>
+          title="Saturn">
+        </button>
 
         <div class="map-label">
           Solar System Explorer
         </div>
+
       </div>
 
       <div id="objectInfo" class="object-info">
+
         <h3 id="objectName"></h3>
+
         <p id="objectDescription"></p>
+
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 
 <section id="search">
+
   <div class="container">
 
     <div class="section-title">
-      <h2>🔎 Search The Cosmos</h2>
-      <p>Search for planets, stars and other celestial objects.</p>
+
+      <h2>
+        🔎 Search The Cosmos
+      </h2>
+
+      <p>
+        Search for planets, stars and other celestial objects.
+      </p>
+
     </div>
 
     <div class="panel">
 
       <div class="search-box">
+
         <input
           id="searchInput"
           type="text"
@@ -591,7 +672,10 @@ footer{
           onkeydown="if(event.key==='Enter') searchSpace()"
         >
 
-        <button onclick="searchSpace()">Search</button>
+        <button onclick="searchSpace()">
+          Search
+        </button>
+
       </div>
 
       <div id="searchResult" class="search-result">
@@ -599,16 +683,26 @@ footer{
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 
 <section id="facts">
+
   <div class="container">
 
     <div class="section-title">
-      <h2>🧠 Daily Space Fact</h2>
-      <p>Learn something new about the universe.</p>
+
+      <h2>
+        🧠 Daily Space Fact
+      </h2>
+
+      <p>
+        Learn something new about the universe.
+      </p>
+
     </div>
 
     <div class="panel">
@@ -622,84 +716,151 @@ footer{
       </div>
 
       <div class="fact-actions">
-        <button onclick="newFact()">✨ New Fact</button>
-        <button onclick="copyFact()">📋 Copy Fact</button>
+
+        <button onclick="newFact()">
+          ✨ New Fact
+        </button>
+
+        <button onclick="copyFact()">
+          📋 Copy Fact
+        </button>
+
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 
 <section id="explore">
+
   <div class="container">
 
     <div class="section-title">
-      <h2>🚀 Explore The Universe</h2>
-      <p>There is much more to discover.</p>
+
+      <h2>
+        🚀 Explore The Universe
+      </h2>
+
+      <p>
+        Tap any topic to discover more.
+      </p>
+
     </div>
 
     <div class="cards">
 
-      <div class="card">
-        <h3>🪐 Planets</h3>
+      <button class="card" onclick="showTopic('Planets')">
+
+        <h3>
+          🪐 Planets
+        </h3>
+
         <p>
           Explore worlds inside and beyond our Solar System,
           from rocky planets to enormous gas giants.
         </p>
-      </div>
 
-      <div class="card">
-        <h3>⭐ Stars</h3>
+      </button>
+
+
+      <button class="card" onclick="showTopic('Stars')">
+
+        <h3>
+          ⭐ Stars
+        </h3>
+
         <p>
           Learn how stars are born, how they evolve and what
           happens when massive stars reach the end of their lives.
         </p>
-      </div>
 
-      <div class="card">
-        <h3>🌌 Galaxies</h3>
+      </button>
+
+
+      <button class="card" onclick="showTopic('Galaxies')">
+
+        <h3>
+          🌌 Galaxies
+        </h3>
+
         <p>
           Discover enormous collections of stars, gas, dust
           and mysterious dark matter spread across the universe.
         </p>
-      </div>
 
-      <div class="card">
-        <h3>🕳️ Black Holes</h3>
+      </button>
+
+
+      <button class="card" onclick="showTopic('Black Holes')">
+
+        <h3>
+          🕳️ Black Holes
+        </h3>
+
         <p>
           Explore some of the most extreme objects known to
           science and learn why even light cannot escape them.
         </p>
-      </div>
 
-      <div class="card">
-        <h3>☄️ Comets</h3>
+      </button>
+
+
+      <button class="card" onclick="showTopic('Comets')">
+
+        <h3>
+          ☄️ Comets
+        </h3>
+
         <p>
           These icy visitors travel through space and can develop
           spectacular glowing tails when they approach the Sun.
         </p>
-      </div>
 
-      <div class="card">
-        <h3>👽 The Unknown</h3>
+      </button>
+
+
+      <button class="card" onclick="showTopic('The Unknown')">
+
+        <h3>
+          👽 The Unknown
+        </h3>
+
         <p>
           The universe still contains countless mysteries.
           Keep exploring and see what humanity discovers next.
         </p>
-      </div>
+
+      </button>
 
     </div>
+
+
+    <div id="topicInfo" class="panel topic-info">
+
+      <h3 id="topicName"></h3>
+
+      <p id="topicDescription"></p>
+
+    </div>
+
   </div>
+
 </section>
 
 </main>
 
 
 <footer>
+
   <div class="container">
+
     © 2026 Presh The Cosmos Alien • Explore. Discover. Wonder.
+
   </div>
+
 </footer>
 
 
@@ -785,13 +946,39 @@ const facts = [
   "A black hole is an object whose gravity is so strong that beyond its event horizon, light cannot escape.",
 
   "The Milky Way galaxy contains hundreds of billions of stars."
+
 ];
 
 
+const topics = {
+
+  "Planets":
+    "Planets are large celestial bodies that orbit stars. Our Solar System has eight planets, ranging from small rocky worlds close to the Sun to enormous gas and ice giants farther away.",
+
+  "Stars":
+    "Stars are enormous balls of hot plasma powered by nuclear fusion. Our Sun is one star among the hundreds of billions believed to exist in the Milky Way.",
+
+  "Galaxies":
+    "Galaxies are enormous systems containing stars, planets, gas, dust and dark matter. The Milky Way is the galaxy that contains our Solar System.",
+
+  "Black Holes":
+    "Black holes are regions of space where gravity is so strong that beyond the event horizon, nothing—not even light—can escape.",
+
+  "Comets":
+    "Comets are icy objects made of frozen gases, rock and dust. When they approach the Sun, heat can create a glowing coma and a spectacular tail.",
+
+  "The Unknown":
+    "The universe still contains enormous mysteries. Dark matter, dark energy, the possibility of life elsewhere and the true nature of some cosmic phenomena are still being investigated."
+
+};
+
+
 function goTo(id){
+
   document.getElementById(id).scrollIntoView({
     behavior:"smooth"
   });
+
 }
 
 
@@ -813,6 +1000,7 @@ function showObject(name){
     behavior:"smooth",
     block:"nearest"
   });
+
 }
 
 
@@ -832,12 +1020,15 @@ function searchSpace(){
       "Type the name of a celestial object to search.";
 
     return;
+
   }
+
 
   const found =
     Object.keys(objects).find(
       key => key.toLowerCase() === input
     );
+
 
   if(found){
 
@@ -848,12 +1039,15 @@ function searchSpace(){
       objects[found].description;
 
     return;
+
   }
+
 
   const partial =
     Object.keys(objects).find(
       key => key.toLowerCase().includes(input)
     );
+
 
   if(partial){
 
@@ -864,13 +1058,36 @@ function searchSpace(){
       objects[partial].description;
 
     return;
+
   }
+
 
   result.innerHTML =
     "I couldn't find <strong>" +
     input +
     "</strong> yet.<br><br>" +
     "Try searching for Mercury, Venus, Earth, Mars, Jupiter, Saturn, Sirius, Sun or Moon.";
+
+}
+
+
+function showTopic(topic){
+
+  if(!topics[topic]) return;
+
+  document.getElementById("topicName").textContent =
+    topic;
+
+  document.getElementById("topicDescription").textContent =
+    topics[topic];
+
+  document.getElementById("topicInfo").classList.add("show");
+
+  document.getElementById("topicInfo").scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
 }
 
 
@@ -881,6 +1098,7 @@ function newFact(){
 
   document.getElementById("factText").textContent =
     random;
+
 }
 
 
@@ -889,17 +1107,26 @@ function copyFact(){
   const fact =
     document.getElementById("factText").textContent;
 
-  navigator.clipboard.writeText(fact)
-    .then(() => {
+  if(navigator.clipboard){
 
-      alert("Space fact copied! 🚀");
+    navigator.clipboard.writeText(fact)
+      .then(() => {
 
-    })
-    .catch(() => {
+        alert("Space fact copied! 🚀");
 
-      alert("Your browser could not copy the fact automatically.");
+      })
+      .catch(() => {
 
-    });
+        alert("Your browser could not copy the fact automatically.");
+
+      });
+
+  }else{
+
+    alert("Copying is not available in this browser.");
+
+  }
+
 }
 
 
